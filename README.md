@@ -21,6 +21,33 @@ This repository demonstrates how to build a configurable, compliant data collect
 - `examples/` – End-to-end scripts showing how to configure a source and generate datasets.  
 - `tests/` – Basic tests for compliance behaviour and export integrity using sample records.[5][8]
 
+```
+compliant-data-collector/
+├─ README.md
+├─ LICENSE
+├─ requirements.txt
+├─ config/
+│  ├─ sources.yml           # Sites/APIs, allowed paths, rate limits
+│  └─ schema_orders.yml     # Example schema definition
+├─ collectors/
+│  ├─ base_collector.py     # Common logic, logging, compliance checks
+│  ├─ http_collector.py     # Requests + BeautifulSoup for simple pages
+│  ├─ playwright_collector.py  # For JS-heavy pages
+│  └─ api_collector.py      # For official APIs
+├─ compliance/
+│  ├─ robots_checker.py     # Reads and enforces robots.txt
+│  └─ tos_notes/            # Markdown notes per site (manually written)
+├─ pipeline/
+│  ├─ clean_transform.py    # Normalization, dedupe, validation
+│  └─ export_csv_excel.py   # CSV & Excel export with pandas
+├─ examples/
+│  ├─ example_ecommerce_products.py
+│  └─ example_api_to_excel.py
+└─ tests/
+   ├─ test_compliance.py
+   └─ test_export.py
+```
+
 ## Installation
 
 1. Clone the repository:  
