@@ -1,0 +1,8 @@
+sources:
+  demo_ecommerce:
+    base_url: "https://example.com"
+    robots_txt: "https://example.com/robots.txt"
+    allowed_paths:
+      - "/products"
+    rate_limit_seconds: 2
+    user_agent: "CompliantDataCollectorBot/1.0"
