@@ -4,4 +4,4 @@ pandas
 openpyxl
 playwright
 pyyaml
-setuptools==68.2.2
+setuptools==78.1.1
