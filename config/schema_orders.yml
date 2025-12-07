@@ -1,0 +1,66 @@
+dataset: "orders"
+description: "Schema definition for e-commerce orders collected via compliant-data-collector."
+
+primary_key: "order_id"
+
+fields:
+  order_id:
+    type: string
+    required: true
+    description: "Unique order identifier from the source system."
+
+  order_date:
+    type: datetime
+    required: true
+    format: "%Y-%m-%d"
+    description: "Date the order was placed (UTC)."
+
+  customer_id:
+    type: string
+    required: false
+    description: "Pseudonymous customer identifier (no direct PII)."
+
+  status:
+    type: string
+    required: true
+    allowed_values:
+      - pending
+      - paid
+      - shipped
+      - delivered
+      - cancelled
+    description: "Current lifecycle status of the order."
+
+  currency:
+    type: string
+    required: true
+    allowed_values:
+      - USD
+      - EUR
+      - GBP
+    description: "ISO currency code used for order totals."
+
+  total_amount:
+    type: number
+    required: true
+    min: 0
+    description: "Total order value in the specified currency."
+
+  items_count:
+    type: integer
+    required: true
+    min: 1
+    description: "Number of line items in the order."
+
+  created_at:
+    type: datetime
+    required: false
+    format: "%Y-%m-%dT%H:%M:%SZ"
+    description: "Timestamp when the record was created in the pipeline."
+
+validation:
+  drop_invalid_rows: true
+  coerce_types: true
+  fill_missing:
+    status: "pending"
+    items_count: 0
